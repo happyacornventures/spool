@@ -12,5 +12,16 @@ fn main() {
         return;
     };
 
+    for entry in std::fs::read_dir(dir).expect("Failed to read directory") {
+        if let Ok(entry) = entry {
+            if let Ok(metadata) = entry.metadata() {
+                if metadata.is_dir() {
+                    let path = entry.path();
+                    println!("Found subdirectory: {}", path.display());
+                }
+            }
+        }
+    }
+
     println!("Hello, world!");
 }
