@@ -19,6 +19,15 @@ fn main() {
                 if metadata.is_dir() {
                     let path = entry.path();
                     println!("Found subdirectory: {}", path.display());
+                    let docker_compose_file = path.join("docker-compose.yml");
+                    if docker_compose_file.exists() {
+                        println!(
+                            "Docker-compose file found in: {}",
+                            docker_compose_file.display()
+                        );
+                    } else {
+                        println!("No docker-compose.yml file found in: {}", path.display());
+                    }
                 }
             }
         }
