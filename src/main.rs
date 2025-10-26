@@ -34,6 +34,11 @@ fn main() {
                             .arg(docker_compose_up_command)
                             .current_dir(dir)
                             .status();
+                        if composeCmdStatus.unwrap().success() {
+                            println!("Successfully started services in: {}", path.display());
+                        } else {
+                            println!("Failed to start services in: {}", path.display());
+                        }
                     } else {
                         println!("No docker-compose.yml file found in: {}", path.display());
                     }
