@@ -25,6 +25,15 @@ fn main() {
                             "Docker-compose file found in: {}",
                             docker_compose_file.display()
                         );
+                        let docker_compose_up_command = format!(
+                            "cd {} && docker compose up -d",
+                            path.file_name().unwrap().to_str().unwrap()
+                        );
+                        let composeCmd = std::process::Command::new("zsh")
+                            .arg("-c")
+                            .arg(docker_compose_up_command)
+                            .current_dir(dir)
+                            .spawn();
                     } else {
                         println!("No docker-compose.yml file found in: {}", path.display());
                     }
