@@ -29,11 +29,11 @@ fn main() {
                             "cd {} && docker compose up -d",
                             path.file_name().unwrap().to_str().unwrap()
                         );
-                        let composeCmd = std::process::Command::new("sh")
+                        let composeCmdStatus = std::process::Command::new("sh")
                             .arg("-c")
                             .arg(docker_compose_up_command)
                             .current_dir(dir)
-                            .spawn();
+                            .status();
                     } else {
                         println!("No docker-compose.yml file found in: {}", path.display());
                     }
