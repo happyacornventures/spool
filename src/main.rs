@@ -29,7 +29,7 @@ fn main() {
                             "cd {} && docker compose up -d",
                             path.file_name().unwrap().to_str().unwrap()
                         );
-                        let composeCmd = std::process::Command::new("zsh")
+                        let composeCmd = std::process::Command::new("sh")
                             .arg("-c")
                             .arg(docker_compose_up_command)
                             .current_dir(dir)
