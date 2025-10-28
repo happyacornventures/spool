@@ -29,12 +29,12 @@ fn main() {
                             "cd {} && docker compose up -d",
                             path.file_name().unwrap().to_str().unwrap()
                         );
-                        let composeCmdStatus = std::process::Command::new("sh")
+                        let compose_cmd_status = std::process::Command::new("sh")
                             .arg("-c")
                             .arg(docker_compose_up_command)
                             .current_dir(dir)
                             .status();
-                        if composeCmdStatus.unwrap().success() {
+                        if compose_cmd_status.unwrap().success() {
                             println!("Successfully started services in: {}", path.display());
                         } else {
                             println!("Failed to start services in: {}", path.display());
