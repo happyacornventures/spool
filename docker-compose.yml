@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  spool:
+    build: .
+    image: spool
+    command: ["--dir", "/app/services"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./configs:/app/services
