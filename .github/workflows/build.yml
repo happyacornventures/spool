@@ -12,5 +12,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Build and push the docker image
         run: |
-          docker build -t ${{ github.actions_repository }}:latest .
+          docker build -t ghcr.io/${{ github.action_repository }}:latest .
           docker image ls
