@@ -25,6 +25,25 @@ fn main() {
                             "Docker-compose file found in: {}",
                             docker_compose_file.display()
                         );
+
+                        // Pull latest images
+                        println!("Pulling latest images for: {}", path.display());
+                        let docker_compose_pull_command = format!(
+                            "cd {} && docker compose pull",
+                            path.file_name().unwrap().to_str().unwrap()
+                        );
+                        let pull_cmd_status = std::process::Command::new("sh")
+                            .arg("-c")
+                            .arg(&docker_compose_pull_command)
+                            .current_dir(dir)
+                            .status();
+
+                        if !pull_cmd_status.unwrap().success() {
+                            println!("Failed to pull images for: {}", path.display());
+                            continue; // Skip to next directory if pull fails
+                        }
+
+                        println!("Starting services in: {}", path.display());
                         let docker_compose_up_command = format!(
                             "cd {} && docker compose up -d",
                             path.file_name().unwrap().to_str().unwrap()
