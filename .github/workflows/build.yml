@@ -22,8 +22,6 @@ jobs:
       - name: Semantic Release Dry Run
         uses: cycjimmy/semantic-release-action@v4
         id: semantic
-        with:
-          dry_run: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Do something when a new release published
