@@ -45,9 +45,7 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: ghcr.io/${{ github.repository }}
-          tags: |
-            type=raw,value=${{ steps.semantic.outputs.new_release_version }}
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+          tags: type=raw,value=${{ steps.semantic.outputs.new_release_version }}
       - name: Build and push Docker image
         if: steps.semantic.outputs.new_release_published == 'true'
         id: push
