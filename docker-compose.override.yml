@@ -1,5 +1,6 @@
 services:
   spool:
+    image: spool:local
     profiles:
       - local
     build: .
