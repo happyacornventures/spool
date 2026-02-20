@@ -38,6 +38,12 @@ fn main() {
         }
     }
 
+    // Add project name to docker compose commands if a network is specified
+    let project_name_flag = network_arg
+        .as_ref()
+        .map(|n| format!("-p {}", n))
+        .unwrap_or_default();
+
     for entry in std::fs::read_dir(dir).expect("Failed to read directory") {
         if let Ok(entry) = entry {
             if let Ok(metadata) = entry.metadata() {
