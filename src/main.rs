@@ -29,7 +29,11 @@ fn main() {
             .status();
 
         if !network_check_status.unwrap().success() {
-            println!("Network '{}' does not exist. Please create it before running the program.", network);
+            // println!("Network '{}' does not exist. Please create it before running the program.", network);
+            std::process::Command::new("sh")
+                .arg("-c")
+                .arg(format!("docker network create {}", network))
+                .status();
             return;
         }
     }
