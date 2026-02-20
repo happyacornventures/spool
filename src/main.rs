@@ -60,8 +60,9 @@ fn main() {
                         // Pull latest images
                         println!("Pulling latest images for: {}", path.display());
                         let docker_compose_pull_command = format!(
-                            "cd {} && docker compose pull",
-                            path.file_name().unwrap().to_str().unwrap()
+                            "cd {} && docker compose {} pull",
+                            path.file_name().unwrap().to_str().unwrap(),
+                            project_name_flag
                         );
                         let pull_cmd_status = std::process::Command::new("sh")
                             .arg("-c")
