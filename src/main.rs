@@ -8,6 +8,13 @@ fn main() {
         .and_then(|i| args.get(i + 1))
         .map(|s| s.to_string());
 
+    // Check if --network flag is present and capture its value
+    let network_arg = args
+        .iter()
+        .position(|arg| arg == "--network")
+        .and_then(|i| args.get(i + 1))
+        .map(|s| s.to_string());
+
     let Some(dir) = &dir_arg else {
         println!("Please provide a directory path with the --dir flag.");
         return;
