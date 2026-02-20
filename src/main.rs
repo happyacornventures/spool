@@ -20,6 +20,20 @@ fn main() {
         return;
     };
 
+    // check if network exists
+    if let Some(network) = &network_arg {
+        let network_check_command = format!("docker network ls | grep {}", network);
+        let network_check_status = std::process::Command::new("sh")
+            .arg("-c")
+            .arg(network_check_command)
+            .status();
+
+        if !network_check_status.unwrap().success() {
+            println!("Network '{}' does not exist. Please create it before running the program.", network);
+            return;
+        }
+    }
+
     for entry in std::fs::read_dir(dir).expect("Failed to read directory") {
         if let Ok(entry) = entry {
             if let Ok(metadata) = entry.metadata() {
