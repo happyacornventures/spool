@@ -77,8 +77,9 @@ fn main() {
 
                         println!("Starting services in: {}", path.display());
                         let docker_compose_up_command = format!(
-                            "cd {} && docker compose up -d",
-                            path.file_name().unwrap().to_str().unwrap()
+                            "cd {} && docker compose{} up -d",
+                            path.file_name().unwrap().to_str().unwrap(),
+                            project_name_flag
                         );
                         let compose_cmd_status = std::process::Command::new("sh")
                             .arg("-c")
