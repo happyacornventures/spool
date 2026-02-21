@@ -41,7 +41,7 @@ fn main() {
     // Add project name to docker compose commands if a network is specified
     let project_name_flag = network_arg
         .as_ref()
-        .map(|n| format!("-p {}", n))
+        .map(|n| format!(" -p {}", n))
         .unwrap_or_default();
 
     for entry in std::fs::read_dir(dir).expect("Failed to read directory") {
@@ -60,7 +60,7 @@ fn main() {
                         // Pull latest images
                         println!("Pulling latest images for: {}", path.display());
                         let docker_compose_pull_command = format!(
-                            "cd {} && docker compose {} pull",
+                            "cd {} && docker compose{} pull",
                             path.file_name().unwrap().to_str().unwrap(),
                             project_name_flag
                         );
