@@ -21,22 +21,22 @@ fn main() {
     };
 
     // check if network exists
-    if let Some(network) = &network_arg {
-        let network_check_command = format!("docker network ls | grep {}", network);
-        let network_check_status = std::process::Command::new("sh")
-            .arg("-c")
-            .arg(network_check_command)
-            .status();
+    // if let Some(network) = &network_arg {
+    //     let network_check_command = format!("docker network ls | grep {}", network);
+    //     let network_check_status = std::process::Command::new("sh")
+    //         .arg("-c")
+    //         .arg(network_check_command)
+    //         .status();
 
-        if !network_check_status.unwrap().success() {
-            // println!("Network '{}' does not exist. Please create it before running the program.", network);
-            std::process::Command::new("sh")
-                .arg("-c")
-                .arg(format!("docker network create {}", network))
-                .status();
-            return;
-        }
-    }
+    //     if !network_check_status.unwrap().success() {
+    //         // println!("Network '{}' does not exist. Please create it before running the program.", network);
+    //         std::process::Command::new("sh")
+    //             .arg("-c")
+    //             .arg(format!("docker network create {}", network))
+    //             .status();
+    //         return;
+    //     }
+    // }
 
     // Add project name to docker compose commands if a network is specified
     let project_name_flag = network_arg
