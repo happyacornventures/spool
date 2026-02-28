@@ -1,6 +1,6 @@
 services:
   spool:
-    image: $REGISTRY/spool
+    image: $REGISTRY/spool:$VERSION
     tty: true
     entrypoint: ["watch", "-n", "30", "spool"]
     command: ["--dir", "/app/services"]
