@@ -3,7 +3,12 @@ services:
     image: $REGISTRY/spool:$VERSION
     tty: true
     entrypoint: ["watch", "-n", "30", "spool"]
-    command: ["--dir", "/app/services"]
+    command:
+      - |
+        while true; do
+          spool --dir /app/services
+          sleep 30
+        done
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config:/app/services
