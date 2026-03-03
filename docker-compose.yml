@@ -2,7 +2,7 @@ services:
   spool:
     image: $REGISTRY/spool:$VERSION
     tty: true
-    entrypoint: ["watch", "-n", "30", "spool"]
+    entrypoint: ["/bin/sh", "-c"]
     command:
       - |
         while true; do
