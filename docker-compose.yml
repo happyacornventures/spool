@@ -6,7 +6,7 @@ services:
     command:
       - |
         while true; do
-          spool --dir /app/services
+          spool --dir /app/services --project spool
           sleep 30
         done
     volumes:
