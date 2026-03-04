@@ -8,10 +8,10 @@ fn main() {
         .and_then(|i| args.get(i + 1))
         .map(|s| s.to_string());
 
-    // Check if --network flag is present and capture its value
-    let network_arg = args
+    // Check if --project flag is present and capture its value
+    let project_arg = args
         .iter()
-        .position(|arg| arg == "--network")
+        .position(|arg| arg == "--project")
         .and_then(|i| args.get(i + 1))
         .map(|s| s.to_string());
 
@@ -20,16 +20,16 @@ fn main() {
         return;
     };
 
-    // check if network exists
-    // if let Some(network) = &network_arg {
-    //     let network_check_command = format!("docker network ls | grep {}", network);
-    //     let network_check_status = std::process::Command::new("sh")
+    // check if project exists
+    // if let Some(project) = &project_arg {
+    //     let project_check_command = format!("docker ps -a --filter 'name={}'", project);
+    //     let project_check_status = std::process::Command::new("sh")
     //         .arg("-c")
-    //         .arg(network_check_command)
+    //         .arg(project_check_command)
     //         .status();
 
-    //     if !network_check_status.unwrap().success() {
-    //         // println!("Network '{}' does not exist. Please create it before running the program.", network);
+    //     if !project_check_status.unwrap().success() {
+    //         // println!("Project '{}' does not exist. Please create it before running the program.", project);
     //         std::process::Command::new("sh")
     //             .arg("-c")
     //             .arg(format!("docker network create {}", network))
@@ -38,8 +38,8 @@ fn main() {
     //     }
     // }
 
-    // Add project name to docker compose commands if a network is specified
-    let project_name_flag = network_arg
+    // Add project name to docker compose commands if a project is specified
+    let project_name_flag = project_arg
         .as_ref()
         .map(|n| format!(" -p {}", n))
         .unwrap_or_default();
